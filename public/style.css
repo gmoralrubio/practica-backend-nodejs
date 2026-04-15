@@ -17,22 +17,38 @@ img {
 ul {
 	list-style: none;
 }
+a {
+	text-decoration: none;
+	color: inherit;
+}
 
-.title {
-	margin-bottom: 2rem;
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-block: 1rem;
+}
+
+.navbar {
+	display: flex;
+	gap: 1rem;
+	& .navbar__link:hover {
+		text-decoration: underline;
+	}
 }
 
 .container {
 	max-width: 64rem;
 	margin: 0 auto;
-	padding: 1rem;
+	padding-inline: 1rem;
 	background-color: #fff;
 }
 
 .card-group {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 	gap: 1rem;
+	padding-bottom: 1rem;
 }
 .card {
 	border-radius: 1rem;
@@ -41,4 +57,10 @@ ul {
 	& .card__title {
 		text-wrap: balance;
 	}
+}
+
+.footer {
+	background-color: #333;
+	color: #fff;
+	padding-block: 1rem;
 }
