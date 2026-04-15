@@ -1,7 +1,12 @@
 import app from '../app.js'
+import { connectToDB } from '../lib/database.js'
 
+// Configuración de entorno
 const PORT = process.env.PORT || 3000
 const HOST = process.env.HOST || '127.0.0.1'
+
+// Conexión BBDD
+await connectToDB()
 
 app.listen(PORT, HOST, () => {
 	console.log(`Server running on http://${HOST}:${PORT}`)
