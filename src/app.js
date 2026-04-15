@@ -24,4 +24,9 @@ app.set('views', join(appDir, 'views'))
 // Routes
 app.use('/', pagesRouter)
 
+// Handler 404
+app.use((req, res) => {
+	res.status(404).send('Resource not found')
+})
+
 export default app
