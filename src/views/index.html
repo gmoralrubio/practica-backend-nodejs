@@ -8,7 +8,15 @@
 </head>
 <body>
 	<div class="container">
-		<h1><%= title %></h>
+		<h1 class="title"><%= title %></h1>
+		<div class="card-group">
+		<% if(products.length === 0) { %>
+			<span>No se han encontrado productos</span>
+		<% } else { products.forEach(product =>{ %>
+			<%- include('partials/components/product-component.html', { product: product }) %>
+		<% })} %>
+		</div>
+
 	</div>
 </body>
 </html>

@@ -14,9 +14,31 @@ img {
 	display: block;
 }
 
+ul {
+	list-style: none;
+}
+
+.title {
+	margin-bottom: 2rem;
+}
+
 .container {
 	max-width: 64rem;
 	margin: 0 auto;
 	padding: 1rem;
 	background-color: #fff;
+}
+
+.card-group {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	gap: 1rem;
+}
+.card {
+	border-radius: 1rem;
+	border: 1px solid #bababa;
+	padding: 1rem;
+	& .card__title {
+		text-wrap: balance;
+	}
 }
