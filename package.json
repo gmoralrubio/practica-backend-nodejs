@@ -2,10 +2,10 @@
 	"name": "nodepop",
 	"version": "1.0.0",
 	"description": "Práctica final módulo Backend con NodeJS",
-	"main": "src/app.js",
+	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "node --watch --env-file=.env src/app.js",
+		"dev": "node --watch --env-file=.env src/bin/www",
 		"test:database": "node --env-file=.env src/lib/database.js"
 	},
 	"keywords": [],
