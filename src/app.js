@@ -6,6 +6,7 @@ import morgan from 'morgan'
 import ejs from 'ejs'
 
 import { pagesRouter } from './routes/pages-router.js'
+import { productsRouter } from './routes/products-routes.js'
 
 // Creamos la aplicación
 const app = express()
@@ -23,6 +24,7 @@ app.set('views', join(appDir, 'views'))
 
 // Routes
 app.use('/', pagesRouter)
+app.use('/products', productsRouter)
 
 // Handler 404
 app.use((req, res) => {
