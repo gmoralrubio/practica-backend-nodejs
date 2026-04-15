@@ -1,0 +1,33 @@
+[
+	{
+		"name": "Samsung Galaxy A16",
+		"price": 119,
+		"tags": ["work", "lifestyle", "mobile"]
+	},
+	{
+		"name": "Casco con visera solar",
+		"price": 77.95,
+		"tags": ["lifestyle", "motor"]
+	},
+	{
+		"name": "Auriculares inalámbricos con cancelación de ruido",
+		"price": 199.99,
+		"tags": ["work", "lifestyle"]
+	},
+	{
+		"name": "Reloj inteligente con monitor de actividad física",
+		"price": 149.99,
+		"tags": ["lifestyle"]
+	},
+	{
+		"name": "Bicicleta eléctrica plegable",
+		"price": 499.99,
+		"tags": ["lifestyle", "motor"]
+	},
+
+	{
+		"name": "Tablet con pantalla de alta resolución",
+		"price": 299.99,
+		"tags": ["work"]
+	}
+]

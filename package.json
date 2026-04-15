@@ -6,7 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "node --watch --env-file=.env src/bin/www",
-		"test:database": "node --env-file=.env src/lib/database.js"
+		"test:database": "node --env-file=.env src/lib/database.js",
+		"initDB": "node --env-file=.env ./src/lib/initDB.js"
 	},
 	"keywords": [],
 	"author": "",
