@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import express from 'express'
 import morgan from 'morgan'
+import { pagesRouter } from './routes/pages-router.js'
 
 // Creamos la aplicación
 const app = express()
@@ -13,8 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(join(appDir, '../public')))
 app.use(morgan('tiny'))
 
-app.get('/', (req, res) => {
-	res.send('Práctica final')
-})
+// Routes
+app.use('/', pagesRouter)
 
 export default app
