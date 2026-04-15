@@ -1,3 +1,5 @@
 export function homePageController(req, res, next) {
-	res.send('Home page')
+	res.render('index.html', {
+		title: 'Home page',
+	})
 }
