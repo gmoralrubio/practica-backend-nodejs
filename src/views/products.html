@@ -1,5 +1,28 @@
 <%- include('partials/start-page.html', {title: title}) %>
-	<div class="container">
-		
+<main>
+	<div class="product-list__header">
+		<span>Nombre producto</span>
+		<span>Precio</span>
+		<span>Tags</span>
 	</div>
+	<div class="product-list">
+	<% products.forEach(product => { %>
+		<div class="product-list__item">
+			<div class="product-list__content">
+				<span><%= product.name %></span>
+				<span><%= product.price %>€</span>
+				<span>
+					<% product.tags.forEach(tag=> { %>
+						<span><%= tag %></span>
+					<% }) %>
+				</span>
+			</div>
+			<div class="product-list__actions">
+				<a href="#">Editar</a>
+				<a href="#">Eliminar</a>
+			</div>
+		</div>
+	<%})%>
+	</div>
+</main>
 <%- include('partials/end-page.html') %>
