@@ -1,7 +1,11 @@
 import { Product } from '../models/product-model.js'
 
 export async function getProducts() {
-	const result = Product.find({})
+	const products = Product.find({})
+	return products
+}
 
-	return result
+export async function getProduct(_id) {
+	const product = Product.findOne({ _id: _id })
+	return product
 }
