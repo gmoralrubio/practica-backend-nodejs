@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
+import MODELS from './MODELS.js'
 
 const productSchema = new Schema(
 	{
@@ -6,9 +7,6 @@ const productSchema = new Schema(
 			type: String,
 			required: true,
 			trim: true,
-		},
-		owner: {
-			type: String,
 		},
 		price: {
 			type: Number,
@@ -19,10 +17,15 @@ const productSchema = new Schema(
 			type: Array,
 			required: true,
 		},
+		owner: {
+			type: Schema.Types.ObjectId,
+			ref: MODELS.USER,
+		},
 	},
 	{
 		timestamps: true,
 	},
 )
 
-export const Product = mongoose.models.Product || mongoose.model('Product', productSchema)
+export const Product =
+	mongoose.models.Product || mongoose.model(MODELS.PRODUCT, productSchema)
