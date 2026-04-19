@@ -6,6 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "node --watch --env-file=.env src/bin/www",
+		"css:build": "postcss src/styles/styles.css -o public/styles.css",
+		"css:watch": "postcss src/styles/styles.css -o public/styles.css --watch",
 		"test:database": "node --env-file=.env src/lib/database.js",
 		"initDB": "node --env-file=.env ./src/lib/initDB.js"
 	},
@@ -14,11 +16,17 @@
 	"license": "ISC",
 	"type": "module",
 	"dependencies": {
+		"@tailwindcss/postcss": "^4.2.2",
 		"bcrypt": "^6.0.0",
 		"ejs": "^5.0.2",
 		"express": "^5.2.1",
 		"mongodb": "^7.1.1",
 		"mongoose": "^9.4.1",
-		"morgan": "^1.10.1"
+		"morgan": "^1.10.1",
+		"postcss": "^8.5.10",
+		"tailwindcss": "^4.2.2"
+	},
+	"devDependencies": {
+		"postcss-cli": "^11.0.1"
 	}
 }
