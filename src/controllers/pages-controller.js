@@ -6,6 +6,7 @@ export async function homePageController(req, res, next) {
 	res.render('index.html', {
 		title: 'Home page',
 		products: products,
+		tags: ['work', 'lifestyle', 'motor', 'mobile'],
 	})
 	return
 }
