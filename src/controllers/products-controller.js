@@ -6,6 +6,7 @@ export async function productsPageController(req, res, next) {
 
 	res.render('products.html', {
 		title: 'Editar productos',
+		tags: ['work', 'motor', 'lifestyle', 'mobile'],
 		products: products,
 	})
 }

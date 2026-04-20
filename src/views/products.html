@@ -1,28 +1,131 @@
 <%- include('partials/start-page.html', {title: title}) %>
 <main>
-	<div>
-		<span>Nombre producto</span>
-		<span>Precio</span>
-		<span>Tags</span>
-	</div>
-	<div>
-	<% products.forEach(product => { %>
-		<div>
-			<div>
-				<span><%= product.name %></span>
-				<span><%= product.price %>€</span>
-				<span>
-					<% product.tags.forEach(tag=> { %>
-						<span><%= tag %></span>
-					<% }) %>
-				</span>
+	<div class="mx-auto max-w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+		<header>
+			<h2 class="text-xl font-bold text-gray-900 sm:text-3xl">Productos</h2>
+
+			<p class="mt-4 max-w-md text-gray-500">
+				Desde aquí puedes ver todos los productos disponibles. Puedes filtrarlos por tag, rango de precio y nombre de producto. También puedes ordenarlos por nombre de producto o precio.
+			</p>
+		</header>
+
+		<div class="mt-8 block lg:hidden">
+			<button class="flex cursor-pointer items-center gap-2 border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600">
+				<span class="text-sm font-medium"> Filters &amp; Sorting mob</span>
+
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 rtl:rotate-180">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+				</svg>
+			</button>
+		</div>
+
+		<div class="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
+			<div class="hidden space-y-4 lg:block">
+				<div>
+					<label for="SortBy" class="block text-xs font-medium text-gray-700"> Ordenar por </label>
+
+					<select id="SortBy" class="mt-1 rounded-sm border-gray-300 text-sm">
+						<option>Ordenar por</option>
+						<option value="Nombre, DESC">Nombre, DESC</option>
+						<option value="Nombre, ASC">Nombre, ASC</option>
+						<option value="Precio, DESC">Precio, DESC</option>
+						<option value="Precio, ASC">Precio, ASC</option>
+					</select>
+				</div>
+
+				<div>
+					<p class="block text-xs font-medium text-gray-700">Filtros</p>
+
+					<div class="mt-1 space-y-2">
+						<details class="overflow-hidden rounded-sm border border-gray-300 [&amp;_summary::-webkit-details-marker]:hidden">
+							<summary class="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition">
+								<span class="text-sm font-medium"> Tags </span>
+
+								<span class="transition group-open:-rotate-180">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+									</svg>
+								</span>
+							</summary>
+
+							<div class="border-t border-gray-200 bg-white">
+								<header class="flex items-center justify-between p-4">
+									<span class="text-sm text-gray-700"> 0 Seleccionados </span>
+
+									<button type="button" class="text-sm text-gray-900 underline underline-offset-4">
+										Reset
+									</button>
+								</header>
+
+								<ul class="space-y-1 border-t border-gray-200 p-4">
+									<% tags.forEach(tag=> {%>
+										<li>
+											<label for="FilterInStock" class="inline-flex items-center gap-2">
+												<input type="checkbox" id="FilterInStock" class="size-5 rounded-sm border-gray-300 shadow-sm">
+
+												<span class="text-sm font-medium text-gray-700">
+													<%= tag %>
+												</span>
+											</label>
+										</li>
+									<% }) %>
+								</ul>
+							</div>
+						</details>
+
+						<details class="overflow-hidden rounded-sm border border-gray-300 [&amp;_summary::-webkit-details-marker]:hidden">
+							<summary class="flex cursor-pointer items-center justify-between gap-2 p-4 text-gray-900 transition">
+								<span class="text-sm font-medium"> Precio </span>
+
+								<span class="transition group-open:-rotate-180">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+									</svg>
+								</span>
+							</summary>
+
+							<div class="border-t border-gray-200 bg-white">
+								<header class="flex items-center justify-between p-4">
+									<span class="text-sm text-gray-700"> El precio más alto es </span>
+
+									<button type="button" class="text-sm text-gray-900 underline underline-offset-4">
+										Reset
+									</button>
+								</header>
+
+								<div class="border-t border-gray-200 p-4">
+									<div class="flex justify-between gap-4">
+										<label for="FilterPriceFrom" class="flex items-center gap-2">
+
+											<input type="number" id="FilterPriceFrom" placeholder="Desde" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+											<span class="text-sm text-gray-600">€</span>
+										</label>
+
+										<label for="FilterPriceTo" class="flex items-center gap-2">
+
+											<input type="number" id="FilterPriceTo" placeholder="Hasta" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+											<span class="text-sm text-gray-600">$</span>
+										</label>
+									</div>
+								</div>
+							</div>
+						</details>
+
+
+					</div>
+				</div>
 			</div>
-			<div>
-				<a href="#">Editar</a>
-				<a href="#">Eliminar</a>
+
+			<div class="lg:col-span-3">
+				<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					<% if(products.length===0) { %>
+						<span>No se han encontrado productos</span>
+					<% } else { products.forEach(product=>{ %>
+						<%- include('partials/components/product-component.html', { product: product }) %>
+					<% })} %>
+				</ul>
 			</div>
 		</div>
-	<%})%>
 	</div>
 </main>
 <%- include('partials/end-page.html') %>
