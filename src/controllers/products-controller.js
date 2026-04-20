@@ -1,7 +1,8 @@
-import { getProducts, getProduct } from '../data/productRepository.js'
+import { getProduct, getProductsByUser } from '../data/productRepository.js'
 
 export async function productsPageController(req, res, next) {
-	const products = await getProducts()
+	const userId = req.session.userId
+	const products = await getProductsByUser(userId)
 
 	res.render('products.html', {
 		title: 'Editar productos',
@@ -11,9 +12,7 @@ export async function productsPageController(req, res, next) {
 
 export async function productPageController(req, res, next) {
 	const productId = req.params.productId
-
 	const product = await getProduct(productId)
-	console.log(product)
 
 	res.render('product.html', {
 		title: 'Producto',

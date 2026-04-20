@@ -5,7 +5,14 @@ export async function getProducts() {
 	return products
 }
 
-export async function getProduct(_id) {
-	const product = Product.findOne({ _id: _id })
+export async function getProductsByUser(userId) {
+	const products = Product.find({
+		owner: userId,
+	})
+	return products
+}
+
+export async function getProduct(productId) {
+	const product = Product.findOne({ _id: productId })
 	return product
 }
