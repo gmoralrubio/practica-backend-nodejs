@@ -9,7 +9,7 @@
 		"css:build": "postcss src/styles/styles.css -o public/styles.css",
 		"css:watch": "postcss src/styles/styles.css -o public/styles.css --watch",
 		"test:database": "node --env-file=.env src/lib/database.js",
-		"initDB": "node --env-file=.env ./src/lib/initDB.js"
+		"seed:database": "node --env-file=.env src/scripts/seed-db.js"
 	},
 	"keywords": [],
 	"author": "",
