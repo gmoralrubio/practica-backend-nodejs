@@ -7,6 +7,12 @@ import ejs from 'ejs'
 
 import { pagesRouter } from './routes/pages-router.js'
 import { productsRouter } from './routes/products-routes.js'
+import { authRouter } from './routes/auth-routes.js'
+import {
+	guard,
+	sessionInViews,
+	sessionMiddleware,
+} from './middlewares/auth-middleware.js'
 
 // Creamos la aplicación
 const app = express()
@@ -17,6 +23,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static(join(appDir, '../public')))
 app.use(morgan('tiny'))
 
+// Auth middlewares
+app.use(sessionMiddleware)
+app.use(sessionInViews)
+
 // Configuracion del motor de plantillas
 app.set('view engine', 'html')
 app.engine('html', ejs.renderFile)
@@ -24,7 +34,8 @@ app.set('views', join(appDir, 'views'))
 
 // Routes
 app.use('/', pagesRouter)
-app.use('/products', productsRouter)
+app.use('/', authRouter)
+app.use('/products', guard, productsRouter)
 
 // Handler 404
 app.use((req, res) => {

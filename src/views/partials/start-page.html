@@ -21,17 +21,21 @@
 							<li>
 								<a class="text-gray-500 transition hover:text-gray-500/75" href="/"> Inicio </a>
 							</li>
+						<% if(session.userId) { %>
 							<li>
 								<a class="text-gray-500 transition hover:text-gray-500/75" href="/products"> Editar productos </a>
 							</li>
+						<% }%>
 						</ul>
 					</nav>
 
 					<div class="flex items-center gap-4">
 						<div class="sm:flex sm:gap-4">
-							<a class="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700" href="#">
+						<% if(!session.userId) { %>
+							<a class="block rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700" href="/login">
 								Iniciar sesión
 							</a>
+						<% }%>
 						</div>
 
 						<button class="block rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
