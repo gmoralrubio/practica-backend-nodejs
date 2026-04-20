@@ -15,7 +15,7 @@
 
 			<div class="flex gap-2">
 				<% product.tags.forEach(tag => { %>
-					<span class="rounded-full border border-purple-500 px-2.5 py-0.5 text-sm whitespace-nowrap text-purple-700 ">
+					<span class="rounded-full border border-indigo-500 px-2.5 py-0.5 text-sm whitespace-nowrap text-indigo-700 ">
 						<%=tag%>
 					</span>
 				<% }) %>
@@ -26,7 +26,7 @@
 			<p class="mt-1.5 text-sm text-gray-700"><%=product.price%>€</p>
 
 			<form class="mt-4">
-				<a href="/products/<%= product._id %>" class="block w-full rounded-sm bg-yellow-400 p-4 text-sm font-medium transition hover:scale-105">
+				<a href="/products/<%= product._id %>" class="block w-full rounded-sm bg-indigo-400 p-4 text-white text-center text-sm font-medium transition hover:scale-105">
 					Ver producto
 				</a>
 			</form>
