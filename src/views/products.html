@@ -7,21 +7,52 @@
 
 		</header>
 
+		<div class="overflow-x-auto rounded border border-gray-300 shadow-sm mt-8">
+			<table class="min-w-full divide-y-2 divide-gray-200">
+				<thead class="ltr:text-left rtl:text-right">
+					<tr class="*:font-medium *:text-gray-900">
+						<th class="px-3 py-2 whitespace-nowrap">Nombre producto</th>
+						<th class="px-3 py-2 whitespace-nowrap">Precio</th>
+						<th class="px-3 py-2 whitespace-nowrap">Tags</th>
+						<th class="px-3 py-2 whitespace-nowrap">Fecha de creación</th>
+						<th class="px-3 py-2 whitespace-nowrap">Acciones</th>
+					</tr>
+				</thead>
 		
-
-		<div class="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
-			
-
-			<div class="lg:col-span-3">
-				<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				<tbody class="divide-y divide-gray-200">
 					<% if(products.length===0) { %>
 						<span>No se han encontrado productos</span>
 					<% } else { products.forEach(product=>{ %>
-						<%- include('partials/components/product-component.html', { product: product }) %>
+						<tr class="*:text-gray-900 *:first:font-medium">
+							<td class="px-3 py-2 whitespace-nowrap"><%= product.name%></td>
+							<td class="px-3 py-2 whitespace-nowrap"><%= product.price %>€</td>
+							<td class="px-3 py-2 whitespace-nowrap flex gap-2">
+								<% product.tags.forEach(tag => { %>
+									<%- include('partials/components/tag-component.html', {tag: tag}) %>
+								<%}) %>
+							</td>
+							<td class="px-3 py-2 whitespace-nowrap"><%= formatDate(product.createdAt) %></td>
+							<td class="px-3 py-2 whitespace-nowrap">
+								<a class="inline-block rounded-sm  bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" href="#">
+									Editar
+								</a>
+								<a class="inline-block rounded-sm  bg-red-600 px-3 py-1 text-sm font-medium text-white hover:bg-red-700" href="#">
+									Eliminar
+								</a>
+							</td>
+						</tr>
 					<% })} %>
-				</ul>
-			</div>
+					
+		
+				</tbody>
+			</table>
 		</div>
+
+		<div class="mt-6 flex justify-end">
+			<a class="inline-block rounded-sm border border-indigo-600 bg-indigo-600 px-9 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600" href="#">
+			Añadir producto
+		</a></div>
+
 	</div>
 </main>
 <%- include('partials/end-page.html') %>
