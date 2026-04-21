@@ -1,4 +1,4 @@
-import { getProducts } from '../data/productRepository.js'
+import { getProducts } from '../data/product-repository.js'
 
 export async function homePageController(req, res, next) {
 	const products = await getProducts()

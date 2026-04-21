@@ -16,3 +16,11 @@ export async function getProduct(productId) {
 	const product = Product.findOne({ _id: productId })
 	return product
 }
+
+export async function addNewProduct(product) {
+	const newProduct = new Product(product)
+	await newProduct.save()
+	console.log(newProduct)
+
+	return newProduct
+}
