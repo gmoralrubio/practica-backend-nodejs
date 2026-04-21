@@ -1,6 +1,12 @@
-export async function homePageController(req, res, next) {
-	// TODO: Añadir checkeo de usuario. Si no está logado, mostrar en vista. Si está logado, mostrar productos de usuario
+import { getProducts } from '../data/productRepository.js'
 
-	res.render('index.html')
+export async function homePageController(req, res, next) {
+	const products = await getProducts()
+
+	res.render('index.html', {
+		title: 'Bienvenido',
+		tags: ['work', 'motor', 'lifestyle', 'mobile'],
+		products: products,
+	})
 	return
 }
