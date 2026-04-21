@@ -1,4 +1,5 @@
 import { getProduct, getProductsByUser } from '../data/productRepository.js'
+import { formatDate } from '../utils/utils.js'
 
 export async function productsPageController(req, res, next) {
 	const userId = req.session.userId
@@ -8,6 +9,7 @@ export async function productsPageController(req, res, next) {
 		title: 'Editar productos',
 		tags: ['work', 'motor', 'lifestyle', 'mobile'],
 		products: products,
+		formatDate: formatDate,
 	})
 }
 
