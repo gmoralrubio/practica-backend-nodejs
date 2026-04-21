@@ -6,8 +6,8 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "node --watch --env-file=.env src/bin/www",
-		"css:build": "postcss src/styles/styles.css -o public/styles.css",
-		"css:watch": "postcss src/styles/styles.css -o public/styles.css --watch",
+		"css:build": "postcss src/styles/styles.css -o public/css/styles.css",
+		"css:watch": "postcss src/styles/styles.css -o public/css/styles.css --watch",
 		"test:database": "node --env-file=.env src/lib/database.js",
 		"seed:database": "node --env-file=.env src/scripts/seed-db.js"
 	},
