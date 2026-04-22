@@ -13,6 +13,7 @@ import {
 	sessionInViews,
 	sessionMiddleware,
 } from './middlewares/auth-middleware.js'
+import { dataInViews } from './middlewares/views-middleware.js'
 
 // Creamos la aplicación
 const app = express()
@@ -22,6 +23,9 @@ const appDir = dirname(fileURLToPath(import.meta.url))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(join(appDir, '../public')))
 app.use(morgan('tiny'))
+
+// Views middleware
+app.use(dataInViews)
 
 // Auth middlewares
 app.use(sessionMiddleware)
