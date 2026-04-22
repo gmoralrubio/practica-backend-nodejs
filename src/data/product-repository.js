@@ -41,3 +41,11 @@ export async function updateProduct(productId, ownerId, updatedProduct) {
 
 	return product
 }
+
+export async function deleteProduct(productId, ownerId) {
+	const deleteResult = await Product.findOneAndDelete({
+		_id: productId,
+		owner: ownerId,
+	})
+	return deleteResult
+}

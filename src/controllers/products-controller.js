@@ -3,6 +3,7 @@ import {
 	getProduct,
 	getProductsByUser,
 	updateProduct,
+	deleteProduct,
 } from '../data/product-repository.js'
 import { formatDate } from '../utils/utils.js'
 
@@ -121,4 +122,20 @@ export async function editProductController(req, res, next) {
 		tags: req.body.tags,
 	})
 	res.redirect('/products')
+}
+
+export async function deleteProductController(req, res, next) {
+	const productId = req.params.productId
+	const product = await getProduct(productId)
+
+	if (!product) {
+		next()
+		return
+	}
+
+	const userId = req.session.userId
+
+	const newProducts = await deleteProduct(productId, userId)
+
+	res.json(newProducts)
 }

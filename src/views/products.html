@@ -36,9 +36,9 @@
 								<a class="inline-block rounded-sm  bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" href="/products/edit/<%= product._id %>">
 									Editar
 								</a>
-								<a class="inline-block rounded-sm  bg-red-600 px-3 py-1 text-sm font-medium text-white hover:bg-red-700" href="#">
+								<button class="inline-block rounded-sm  bg-red-600 px-3 py-1 text-sm font-medium text-white hover:bg-red-700 delete-btn" data-id="<%=product._id%>">
 									Eliminar
-								</a>
+								<button/>
 							</td>
 						</tr>
 					<% })} %>
