@@ -29,5 +29,75 @@
 		"name": "Tablet con pantalla de alta resolución",
 		"price": 299.99,
 		"tags": ["work"]
+	},
+	{
+		"name": "Cámara de seguridad para el hogar",
+		"price": 89.99,
+		"tags": ["lifestyle", "work"]
+	},
+	{
+		"name": "Juego de herramientas eléctricas inalámbricas",
+		"price": 199.99,
+		"tags": ["work", "lifestyle"]
+	},
+	{
+		"name": "Silla ergonómica para oficina",
+		"price": 249.99,
+		"tags": ["work"]
+	},
+	{
+		"name": "Cargador portátil de alta capacidad",
+		"price": 39.99,
+		"tags": ["lifestyle", "work"]
+	},
+	{
+		"name": "Gafas de sol polarizadas",
+		"price": 59.99,
+		"tags": ["lifestyle"]
+	},
+	{
+		"name": "Mochila resistente al agua",
+		"price": 89.99,
+		"tags": ["lifestyle", "work"]
+	},
+	{
+		"name": "Set de utensilios de cocina de acero inoxidable",
+		"price": 129.99,
+		"tags": ["lifestyle"]
+	},
+	{
+		"name": "Cámara de acción resistente al agua",
+		"price": 149.99,
+		"tags": ["lifestyle", "work"]
+	},
+	{
+		"name": "Juego de sábanas de algodón de alta calidad",
+		"price": 79.99,
+		"tags": ["lifestyle"]
+	},
+	{
+		"name": "Cafetera de cápsulas con función de programación",
+		"price": 99.99,
+		"tags": ["lifestyle", "work"]
+	},
+	{
+		"name": "Set de herramientas de jardinería",
+		"price": 149.99,
+		"tags": ["lifestyle", "mobile", "work"]
+	},
+	{
+		"name": "Cámara réflex digital con lente intercambiable",
+		"price": 499.99,
+		"tags": ["work"]
+	},
+	{
+		"name": "Juego de maletas de viaje resistentes",
+		"price": 199.99,
+		"tags": ["mobile"]
+	},
+	{
+		"name": "Set de herramientas de bricolaje para el hogar",
+		"price": 149.99,
+		"tags": ["motor"]
 	}
 ]
