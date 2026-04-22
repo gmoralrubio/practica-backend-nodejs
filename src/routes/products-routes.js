@@ -1,9 +1,10 @@
 import express from 'express'
 import {
-	productPageController,
 	productsPageController,
 	createProductController,
 	newProductPageController,
+	editProductController,
+	editProductPageController,
 } from '../controllers/products-controller.js'
 
 export const productsRouter = express.Router()
@@ -14,4 +15,7 @@ productsRouter.post('/', createProductController)
 
 // Read
 productsRouter.get('/', productsPageController)
-productsRouter.get('/:productId', productPageController)
+
+// Update
+productsRouter.get('/edit/:productId', editProductPageController)
+productsRouter.post('/edit/:productId', editProductController)

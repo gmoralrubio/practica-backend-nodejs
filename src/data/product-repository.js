@@ -20,7 +20,24 @@ export async function getProduct(productId) {
 export async function addNewProduct(product) {
 	const newProduct = new Product(product)
 	await newProduct.save()
-	console.log(newProduct)
 
 	return newProduct
+}
+
+export async function updateProduct(productId, ownerId, updatedProduct) {
+	const product = await Product.findOneAndUpdate(
+		{
+			_id: productId,
+			owner: ownerId,
+		},
+		{
+			$set: {
+				name: updatedProduct.name,
+				price: updatedProduct.price,
+				tags: updatedProduct.tags,
+			},
+		},
+	)
+
+	return product
 }
