@@ -5,6 +5,13 @@ export async function getProducts() {
 	return products
 }
 
+export async function getFilteredProducts(productsToSkip, productsPerPage) {
+	const products = Product.find({}).skip(productsToSkip).limit(productsPerPage)
+	console.log(products)
+
+	return products
+}
+
 export async function getProductsByUser(userId) {
 	const products = Product.find({
 		owner: userId,
