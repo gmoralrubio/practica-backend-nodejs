@@ -3,7 +3,6 @@ import { User } from '../models/user-model.js'
 export async function loginPageController(req, res, next) {
 	res.render('login.html', {
 		title: 'Inicia sesión',
-		errorMessage: null,
 		values: {},
 	})
 }
@@ -50,7 +49,7 @@ export async function loginActionController(req, res, next) {
 }
 
 export function logoutActionController(req, res, next) {
-	req.session.regenerate(err => {
+	req.session.regenerate((err) => {
 		if (err) {
 			next(err)
 			return
