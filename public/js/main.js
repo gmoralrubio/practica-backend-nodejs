@@ -15,3 +15,11 @@ deleteBtns.forEach((btn) => {
 			.then((data) => (window.location.href = '/products'))
 	})
 })
+
+// Productos por página
+const productsPerPageSelect = document.querySelector('#products-per-page')
+
+productsPerPageSelect.addEventListener('input', (e) => {
+	const productsPerPage = e.target.value
+	window.location.href = `/?productsPerPage=${productsPerPage}&page=0`
+})
