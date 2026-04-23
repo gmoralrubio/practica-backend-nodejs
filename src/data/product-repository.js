@@ -5,9 +5,13 @@ export async function getProducts() {
 	return products
 }
 
-export async function getFilteredProducts(productsToSkip, productsPerPage) {
+export async function getProductsCount() {
+	const productsCount = Product.find({}).countDocuments()
+	return productsCount
+}
+
+export async function getPaginatedProducts(productsToSkip, productsPerPage) {
 	const products = Product.find({}).skip(productsToSkip).limit(productsPerPage)
-	console.log(products)
 
 	return products
 }
