@@ -18,59 +18,38 @@ deleteBtns.forEach((btn) => {
 
 // Productos por página
 const limitSelect = document.querySelector('#products-per-page')
-
 limitSelect.addEventListener('input', (e) => {
 	const limitValue = e.target.value
-
-	const searchUrl = createSearchUrl(
-		new URLSearchParams({
-			limit: limitValue,
-			page: 1,
-		}),
-	)
-
-	window.location.href = `/?${searchUrl}`
+	createSearchUrl(new URLSearchParams({ limit: limitValue }))
 })
 
 // Orden productos
 const sortSelect = document.querySelector('#sort-by')
-
 sortSelect.addEventListener('input', (e) => {
 	const sortValue = e.target.value
-
-	const searchUrl = createSearchUrl(
-		new URLSearchParams({
-			sort: sortValue,
-			page: 1,
-		}),
-	)
-
-	window.location.href = `/?${searchUrl}`
+	createSearchUrl(new URLSearchParams({ sort: sortValue }))
 })
 
+// Tags
 const tagCheckboxes = document.querySelectorAll('input[name="tags"]')
-
 tagCheckboxes.forEach((tag) => {
 	tag.addEventListener('input', (e) => {
 		const tagValue = e.target.value
+		console.log(tagValue)
 
 		const searchUrl = createSearchUrl(new URLSearchParams({ tag: tagValue }))
 		console.log(searchUrl)
 
-		window.location.href = `/?${searchUrl}`
+		// window.location.href = `/?${searchUrl}`
 	})
 })
 
 function createSearchUrl(newParams) {
-	const url = new URL(window.location.href)
-	const searchParams = new URLSearchParams(url.search)
+	const searchParams = new URLSearchParams({
+		page: newParams.has('page') ? newParams.get('page') : 1,
+		limit: newParams.has('limit') ? newParams.get('limit') : 10,
+		sort: newParams.has('sort') ? newParams.get('sort') : 'nameAsc',
+	})
 
-	for (const [key, value] of newParams.entries()) {
-		if (value) {
-			searchParams.set(key, value)
-		} else {
-			searchParams.delete(key)
-		}
-	}
-	return searchParams.toString()
+	window.location.href = `/?${searchParams.toString()}`
 }
