@@ -6,7 +6,14 @@ export async function homePageController(req, res, next) {
 	const limit = Number(req.query.limit) || 10
 	const skip = (page - 1) * limit
 	// Filtros
-	const sort = req.query.sort || {}
+	const sortOptions = {
+		nameAsc: { name: 1 },
+		nameDesc: { name: -1 },
+		priceAsc: { price: 1 },
+		priceDesc: { price: -1 },
+	}
+	const sortQuery = req.query.sort || {}
+	const sort = sortOptions[sortQuery]
 	const tag = req.query.tag || ['motor', 'mobile', 'lifestyle', 'motor']
 
 	const productsCount = await getProductsCount()
