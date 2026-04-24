@@ -25,7 +25,6 @@ limitSelect.addEventListener('input', (e) => {
 	const searchUrl = createSearchUrl(
 		new URLSearchParams({
 			limit: limitValue,
-			skip: 0,
 		}),
 	)
 
