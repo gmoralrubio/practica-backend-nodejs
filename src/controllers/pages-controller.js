@@ -1,4 +1,5 @@
 import { getFilteredProducts, getProductsCount } from '../data/product-repository.js'
+import { TAGS } from '../models/TAGS.js'
 
 export async function homePageController(req, res, next) {
 	// Paginación
@@ -12,21 +13,21 @@ export async function homePageController(req, res, next) {
 		priceAsc: { price: 1 },
 		priceDesc: { price: -1 },
 	}
-	const sortQuery = req.query.sort || {}
-	const sort = sortOptions[sortQuery]
-	const tag = req.query.tag || ['motor', 'mobile', 'lifestyle', 'motor']
+	const sortQuery = req.query.sort || 'nameAsc'
+	const sort = sortOptions[sortQuery] || sortOptions['nameAsc']
+
+	const tag = req.query.tag || TAGS
 
 	const productsCount = await getProductsCount()
 	const filteredProducts = await getFilteredProducts(skip, limit, sort, tag)
 
 	const pages = Math.ceil(productsCount / limit)
-	console.log(pages)
 
 	res.render('index.html', {
 		title: 'Bienvenido',
 		products: filteredProducts,
 		currentPage: page,
-		currentSort: sort,
+		currentSort: sortQuery,
 		pages,
 		skip,
 		limit,
