@@ -10,8 +10,13 @@ export async function getProductsCount() {
 	return productsCount
 }
 
-export async function getPaginatedProducts(productsToSkip, productsPerPage) {
-	const products = Product.find({}).skip(productsToSkip).limit(productsPerPage)
+export async function getFilteredProducts(skip, limit, sort, tags) {
+	const products = Product.find({
+		tags: { $in: tags },
+	})
+		.skip(skip)
+		.limit(limit)
+		.sort(sort)
 
 	return products
 }

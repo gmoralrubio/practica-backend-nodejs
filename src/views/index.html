@@ -50,14 +50,12 @@
 					</select>
 				</div>
 				<div>
-					<label for="SortBy" class="block text-xs font-medium text-gray-700"> Ordenar por </label>
+					<label for="sort-by" class="block text-xs font-medium text-gray-700"> Ordenar por </label>
 
-					<select id="SortBy" class="mt-1 rounded-sm border-gray-300 text-sm">
+					<select id="sort-by" class="mt-1 rounded-sm border-gray-300 text-sm">
 						<option>Ordenar por</option>
-						<option value="Nombre, DESC">Nombre, DESC</option>
-						<option value="Nombre, ASC">Nombre, ASC</option>
-						<option value="Precio, DESC">Precio, DESC</option>
-						<option value="Precio, ASC">Precio, ASC</option>
+						<option value="name">Nombre</option>
+						<option value="price">Precio</option>
 					</select>
 				</div>
 
@@ -87,7 +85,7 @@
 									<% tags.forEach(tag=> {%>
 										<li>
 											<label for="<%= tag %>" class="inline-flex items-center gap-2">
-												<input type="checkbox" id="<%= tag %>" class="size-5 rounded-sm border-gray-300 shadow-sm">
+												<input type="checkbox" name="tags" id="<%= tag %>" value="<%=tag%>"  class="size-5 rounded-sm border-gray-300 shadow-sm">
 
 												<span class="text-sm font-medium text-gray-700">
 													<%= tag %>
@@ -146,7 +144,7 @@
 				</ul>
         <ul class="flex justify-center gap-1 text-gray-900 mt-6">
           <li>
-            <a href="/?productsPerPage=<%=productsPerPage%>&page=<%= currentPage === 0 ? currentPage : currentPage - 1%>" class="grid size-8 place-content-center rounded border border-gray-200 transition-colors hover:bg-gray-50 rtl:rotate-180" aria-label="Previous page">
+            <a href="/?limit=<%=limit%>&skip=<%= skip - limit < 0 ? 0 : skip - limit %>" class="grid size-8 place-content-center rounded border border-gray-200 transition-colors hover:bg-gray-50 rtl:rotate-180" aria-label="Previous page">
               <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
@@ -155,14 +153,14 @@
 
           <% for(let i = 0; i < pages; i++) { %>
             <li>
-              <a href="/?productsPerPage=<%=productsPerPage%>&page=<%= i %>" class="block size-8 rounded border border-gray-200 text-center text-sm/8 font-medium transition-colors hover:bg-gray-50 <%= i===currentPage ? 'bg-indigo-600 text-white hover:text-indigo-600' : '' %>">
+              <a href="/?limit=<%=limit%>&skip=<%= i * limit %>" class="block size-8 rounded border border-gray-200 text-center text-sm/8 font-medium transition-colors hover:bg-gray-50 <%= skip === i * limit ? 'bg-indigo-600 text-white hover:text-indigo-600' : '' %>">
                 <%= i + 1 %>
               </a>
             </li>
           <% } %>
 
           <li>
-            <a href="/?productsPerPage=<%=productsPerPage%>&page=<%= currentPage === pages - 1 ? currentPage: currentPage + 1%>" class="grid size-8 place-content-center rounded border border-gray-200 transition-colors hover:bg-gray-50 rtl:rotate-180" aria-label="Next page">
+            <a href="/?limit=<%=limit%>&skip=<%= skip + limit > maxSkip ? maxSkip : skip + limit %>" class="grid size-8 place-content-center rounded border border-gray-200 transition-colors hover:bg-gray-50 rtl:rotate-180" aria-label="Next page">
               <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
               </svg>

@@ -1,102 +1,102 @@
 [
 	{
-		"name": "Samsung Galaxy A16",
+		"name": "1. Samsung Galaxy A16",
 		"price": 119,
 		"tags": ["work", "lifestyle", "mobile"]
 	},
 	{
-		"name": "Casco con visera solar",
+		"name": "2. Casco con visera solar",
 		"price": 77.95,
 		"tags": ["lifestyle", "motor"]
 	},
 	{
-		"name": "Auriculares inalámbricos con cancelación de ruido",
+		"name": "3. Auriculares inalámbricos con cancelación de ruido",
 		"price": 199.99,
 		"tags": ["work", "lifestyle"]
 	},
 	{
-		"name": "Reloj inteligente con monitor de actividad física",
+		"name": "4. Reloj inteligente con monitor de actividad física",
 		"price": 149.99,
 		"tags": ["lifestyle"]
 	},
 	{
-		"name": "Bicicleta eléctrica plegable",
+		"name": "5. Bicicleta eléctrica plegable",
 		"price": 499.99,
 		"tags": ["lifestyle", "motor"]
 	},
 
 	{
-		"name": "Tablet con pantalla de alta resolución",
+		"name": "6. Tablet con pantalla de alta resolución",
 		"price": 299.99,
 		"tags": ["work"]
 	},
 	{
-		"name": "Cámara de seguridad para el hogar",
+		"name": "7. Cámara de seguridad para el hogar",
 		"price": 89.99,
 		"tags": ["lifestyle", "work"]
 	},
 	{
-		"name": "Juego de herramientas eléctricas inalámbricas",
+		"name": "8. Juego de herramientas eléctricas inalámbricas",
 		"price": 199.99,
 		"tags": ["work", "lifestyle"]
 	},
 	{
-		"name": "Silla ergonómica para oficina",
+		"name": "9. Silla ergonómica para oficina",
 		"price": 249.99,
 		"tags": ["work"]
 	},
 	{
-		"name": "Cargador portátil de alta capacidad",
+		"name": "10. Cargador portátil de alta capacidad",
 		"price": 39.99,
 		"tags": ["lifestyle", "work"]
 	},
 	{
-		"name": "Gafas de sol polarizadas",
+		"name": "11. Gafas de sol polarizadas",
 		"price": 59.99,
 		"tags": ["lifestyle"]
 	},
 	{
-		"name": "Mochila resistente al agua",
+		"name": "12. Mochila resistente al agua",
 		"price": 89.99,
 		"tags": ["lifestyle", "work"]
 	},
 	{
-		"name": "Set de utensilios de cocina de acero inoxidable",
+		"name": "13. Set de utensilios de cocina de acero inoxidable",
 		"price": 129.99,
 		"tags": ["lifestyle"]
 	},
 	{
-		"name": "Cámara de acción resistente al agua",
+		"name": "14. Cámara de acción resistente al agua",
 		"price": 149.99,
 		"tags": ["lifestyle", "work"]
 	},
 	{
-		"name": "Juego de sábanas de algodón de alta calidad",
+		"name": "15. Juego de sábanas de algodón de alta calidad",
 		"price": 79.99,
 		"tags": ["lifestyle"]
 	},
 	{
-		"name": "Cafetera de cápsulas con función de programación",
+		"name": "16. Cafetera de cápsulas con función de programación",
 		"price": 99.99,
 		"tags": ["lifestyle", "work"]
 	},
 	{
-		"name": "Set de herramientas de jardinería",
+		"name": "17. Set de herramientas de jardinería",
 		"price": 149.99,
 		"tags": ["lifestyle", "mobile", "work"]
 	},
 	{
-		"name": "Cámara réflex digital con lente intercambiable",
+		"name": "18. Cámara réflex digital con lente intercambiable",
 		"price": 499.99,
 		"tags": ["work"]
 	},
 	{
-		"name": "Juego de maletas de viaje resistentes",
+		"name": "19. Juego de maletas de viaje resistentes",
 		"price": 199.99,
 		"tags": ["mobile"]
 	},
 	{
-		"name": "Set de herramientas de bricolaje para el hogar",
+		"name": "20. Set de herramientas de bricolaje para el hogar",
 		"price": 149.99,
 		"tags": ["motor"]
 	}
