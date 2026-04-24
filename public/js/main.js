@@ -25,6 +25,7 @@ limitSelect.addEventListener('input', (e) => {
 	const searchUrl = createSearchUrl(
 		new URLSearchParams({
 			limit: limitValue,
+			page: 1,
 		}),
 	)
 
@@ -40,6 +41,7 @@ sortSelect.addEventListener('input', (e) => {
 	const searchUrl = createSearchUrl(
 		new URLSearchParams({
 			sort: sortValue,
+			page: 1,
 		}),
 	)
 
@@ -64,7 +66,11 @@ function createSearchUrl(newParams) {
 	const searchParams = new URLSearchParams(url.search)
 
 	for (const [key, value] of newParams.entries()) {
-		searchParams.set(key, value)
+		if (value) {
+			searchParams.set(key, value)
+		} else {
+			searchParams.delete(key)
+		}
 	}
 	return searchParams.toString()
 }
