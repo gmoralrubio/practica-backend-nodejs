@@ -45,11 +45,17 @@ tagCheckboxes.forEach((tag) => {
 })
 
 function createSearchUrl(newParams) {
-	const searchParams = new URLSearchParams({
-		page: newParams.has('page') ? newParams.get('page') : 1,
-		limit: newParams.has('limit') ? newParams.get('limit') : 10,
-		sort: newParams.has('sort') ? newParams.get('sort') : 'nameAsc',
-	})
+	const defaultParams = { page: 1, limit: 10, sort: 'nameAsc' }
+	const urlParams = new URLSearchParams(window.location.search)
+	const searchParams = new URLSearchParams(defaultParams)
+
+	for (const [key, value] of urlParams) {
+		searchParams.set(key, value)
+	}
+
+	for (const [key, value] of newParams) {
+		searchParams.set(key, value)
+	}
 
 	window.location.href = `/?${searchParams.toString()}`
 }
