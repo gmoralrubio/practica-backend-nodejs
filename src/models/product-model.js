@@ -15,7 +15,7 @@ const productSchema = new Schema(
 			min: 0,
 		},
 		tags: {
-			type: String,
+			type: [String],
 			required: true,
 			enum: TAGS,
 		},
