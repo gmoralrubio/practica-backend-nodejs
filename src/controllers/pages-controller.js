@@ -1,5 +1,5 @@
 import { getFilteredProducts, getProductsCount } from '../data/product-repository.js'
-import { TAGS } from '../models/TAGS.js'
+import TAGS from '../models/TAGS.js'
 
 export async function homePageController(req, res, next) {
 	// Paginación
