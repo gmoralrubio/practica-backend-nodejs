@@ -1,6 +1,8 @@
+import { TAGS } from '../models/TAGS.js'
+
 export function dataInViews(req, res, next) {
 	res.locals.errorMessage = null
-	res.locals.tags = ['work', 'motor', 'lifestyle', 'mobile']
+	res.locals.tags = TAGS
 	res.locals.isModalOpen = null
 	next()
 }
