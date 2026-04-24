@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import MODELS from './MODELS.js'
+import TAGS from './TAGS.js'
 
 const productSchema = new Schema(
 	{
@@ -14,8 +15,9 @@ const productSchema = new Schema(
 			min: 0,
 		},
 		tags: {
-			type: Array,
+			type: String,
 			required: true,
+			enum: TAGS,
 		},
 		owner: {
 			type: Schema.Types.ObjectId,
