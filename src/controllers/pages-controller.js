@@ -16,18 +16,27 @@ export async function homePageController(req, res, next) {
 	const sortQuery = req.query.sort || 'nameAsc'
 	const sort = sortOptions[sortQuery] || sortOptions['nameAsc']
 
-	const tag = req.query.tag || TAGS
+	const tags = []
+	let selectedTags = req.query.tags ? tags.concat(req.query.tags) : []
 
-	const productsCount = await getProductsCount()
-	const filteredProducts = await getFilteredProducts(skip, limit, sort, tag)
+	const filter = {}
+
+	if (selectedTags.length > 0) {
+		filter.tags = { $in: selectedTags }
+	}
+
+	const productsCount = await getProductsCount(filter)
+	const filteredProducts = await getFilteredProducts(skip, limit, sort, filter)
 
 	const pages = Math.ceil(productsCount / limit)
+	console.log(selectedTags)
 
 	res.render('index.html', {
 		title: 'Bienvenido',
 		products: filteredProducts,
 		currentPage: page,
 		currentSort: sortQuery,
+		selectedTags,
 		pages,
 		skip,
 		limit,

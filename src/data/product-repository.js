@@ -5,18 +5,13 @@ export async function getProducts() {
 	return products
 }
 
-export async function getProductsCount() {
-	const productsCount = Product.find({}).countDocuments()
+export async function getProductsCount(filter) {
+	const productsCount = Product.find(filter).countDocuments()
 	return productsCount
 }
 
-export async function getFilteredProducts(skip, limit, sort, tags) {
-	const products = Product.find({
-		tags: { $in: tags },
-	})
-		.skip(skip)
-		.limit(limit)
-		.sort(sort)
+export async function getFilteredProducts(skip, limit, sort, filter) {
+	const products = Product.find(filter).skip(skip).limit(limit).sort(sort)
 
 	return products
 }
