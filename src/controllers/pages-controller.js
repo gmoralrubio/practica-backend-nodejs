@@ -29,17 +29,22 @@ export async function homePageController(req, res, next) {
 	const filteredProducts = await getFilteredProducts(skip, limit, sort, filter)
 
 	const pages = Math.ceil(productsCount / limit)
-	console.log(selectedTags)
+
+	const queryBase = new URLSearchParams()
+	// queryBase.set('page', page)
+	queryBase.set('limit', limit)
+	queryBase.set('sort', sortQuery)
+	selectedTags.forEach((tag) => queryBase.append('tags', tag))
+
+	console.log(queryBase.toString())
 
 	res.render('index.html', {
 		title: 'Bienvenido',
 		products: filteredProducts,
 		currentPage: page,
-		currentSort: sortQuery,
 		selectedTags,
 		pages,
-		skip,
-		limit,
+		queryBase,
 	})
 	return
 }

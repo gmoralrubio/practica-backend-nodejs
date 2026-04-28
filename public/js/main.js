@@ -33,7 +33,7 @@ sortSelect?.addEventListener('input', (e) => {
 // Tags
 const filtersForm = document.querySelector('#filters-form')
 const filtersBtn = document.querySelector('#filters-btn')
-filtersBtn.addEventListener('click', (e) => {
+filtersBtn?.addEventListener('click', (e) => {
 	e.preventDefault()
 	let selectedTags = []
 	const formData = new FormData(filtersForm, filtersBtn)
@@ -45,13 +45,13 @@ filtersBtn.addEventListener('click', (e) => {
 		}
 	}
 	const params = new URLSearchParams()
-	selectedTags.forEach((tag) => params.append('tags', tag))
-	console.log(params.toString())
+	params.set('page', '1')
 
+	selectedTags.forEach((tag) => params.append('tags', tag))
 	createSearchUrl(params, selectedTags.length === 0 ? ['tags'] : [])
 })
 
-function createSearchUrl(newParams, tags = []) {
+function createSearchUrl(newParams, toDelete = []) {
 	const searchParams = new URLSearchParams({ page: 1, limit: 10, sort: 'nameAsc' })
 	const urlParams = new URLSearchParams(window.location.search)
 
@@ -72,7 +72,7 @@ function createSearchUrl(newParams, tags = []) {
 		}
 	}
 
-	for (const key of tags) {
+	for (const key of toDelete) {
 		searchParams.delete(key)
 	}
 
