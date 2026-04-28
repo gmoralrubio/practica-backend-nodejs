@@ -38,79 +38,71 @@
 		</div>
 
 		<div class="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
-			<div class="hidden space-y-4 lg:block">
-				<div>
-					<label for="products-per-page" class="block text-xs font-medium text-gray-700"> Productos por página </label>
-
-					<select id="products-per-page" class="mt-1 rounded-sm border-gray-300 text-sm">
-						<option>Productos por página</option>
-						<option value="5">5</option>
-						<option value="10">10</option>
-						<option value="15">15</option>
-					</select>
-				</div>
-				<div>
-					<label for="sort-by" class="block text-xs font-medium text-gray-700"> Ordenar por </label>
-
-					<select id="sort-by" class="mt-1 rounded-sm border-gray-300 text-sm">
-						<option>Ordenar por</option>
-						<option value="nameAsc">Nombre asc</option>
-						<option value="nameDesc">Nombre desc</option>
-						<option value="priceAsc">Precio asc</option>
-						<option value="priceDesc">Precio desc</option>
-					</select>
-				</div>
-
-				<div>
-          
-          <form class="mt-1 space-y-2" id="filters-form">
-            <header class="flex items-center justify-between mb-2">
-              <span class="block text-sm font-medium"> Filtros </span>
-              <button type="button" class="text-sm text-gray-900 underline underline-offset-4">
-                Reset
-              </button>
-            </header>
-            <div class="border rounded-sm border-gray-300 p-2 space-y-4">
-              <div>
-                <span class="block text-xs font-medium text-gray-700 mb-2"> Tags </span>
-                <ul class="space-y-1 ">
-                  <% tags.forEach(tag=> {%>
-                    <li>
-                      <label for="<%= tag %>" class="inline-flex items-center gap-2">
-                        <input type="checkbox" name="tags" id="<%= tag %>" value="<%= tag %>"  class="size-5 rounded-sm border-gray-300 shadow-sm" <%= selectedTags.includes(tag) ? 'checked' : '' %>>
-
-                        <span class="text-sm font-medium text-gray-700">
-                          <%= tag %>
-                        </span>
-                      </label>
-                    </li>
-                  <% }) %>
-                </ul>
-              </div>
-              
-              <div>
-                <span class="block text-xs font-medium text-gray-700 mb-2"> Precio </span>
-                <div class="flex justify-between gap-4 ">
-                  <label for="minPrice" class="flex items-center gap-2">
-
-                    <input type="number" name="minPrice" id="minPrice" min="0" value="<%= minPrice %>" placeholder="Desde" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
-                    <span class="text-sm text-gray-600">€</span>
+      <form action="/" method="GET" class="mt-1 space-y-2 border rounded-sm border-gray-300 p-2" id="filters-form">
+        <header class="flex items-center justify-between mb-2">
+          <span class="block text-sm font-medium"> Filtros </span>
+        </header>
+        <div class="hidden space-y-4 lg:block">
+          <div>
+            <label for="productsPerPage" class="block text-xs font-medium text-gray-700"> Productos por página </label>
+      
+            <select id="productsPerPage" name="limit" class="mt-1 rounded-sm border-gray-300 text-sm">
+              <option disabled>Productos por página</option>
+              <% limitOptions.forEach(option => { %>
+                <option value="<%= option %>" <%= limit === option ? 'selected' : '' %>><%= option %></option>
+              <%})%>
+            </select>
+          </div>
+          <div>
+            <label for="sort" class="block text-xs font-medium text-gray-700"> Ordenar por </label>
+      
+            <select id="sort" name="sort" class="mt-1 rounded-sm border-gray-300 text-sm">
+              <option disabled>Ordenar por</option>
+              <% for(const option in sortOptions) { %>
+                <option value="<%= option %>" <%= option === sortQuery ? 'selected' : '' %> ><%= option %></option>
+              <% } %>
+            </select>
+          </div>
+      
+      
+          <div>
+            <span class="block text-xs font-medium text-gray-700 mb-2"> Tags </span>
+            <ul class="space-y-1 ">
+              <% tags.forEach(tag=> {%>
+                <li>
+                  <label for="<%= tag %>" class="inline-flex items-center gap-2">
+                    <input type="checkbox" name="tags" id="<%= tag %>" value="<%= tag %>" class="size-5 rounded-sm border-gray-300 shadow-sm" <%=selectedTags.includes(tag) ? 'checked' : '' %>>
+      
+                    <span class="text-sm font-medium text-gray-700">
+                      <%= tag %>
+                    </span>
                   </label>
-
-                  <label for="maxPrice" class="flex items-center gap-2">
-
-                    <input type="number" id="maxPrice" value="<%= maxPrice %>" name="maxPrice" placeholder="Hasta" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
-                    <span class="text-sm text-gray-600">€</span>
-                  </label>
-                </div>
-              </div>
-              <button type="submit" class="rounded-full border border-indigo-600 bg-indigo-600 px-4 py-2 text-xs font-medium text-white cursor-pointer hover:bg-indigo-700" id="filters-btn">
-                Aplicar filtros
-              </button>
+                </li>
+                <% }) %>
+            </ul>
+          </div>
+      
+          <div>
+            <span class="block text-xs font-medium text-gray-700 mb-2"> Precio </span>
+            <div class="flex justify-between gap-4 ">
+              <label for="minPrice" class="flex items-center gap-2">
+      
+                <input type="number" name="minPrice" id="minPrice" min="0" value="<%= minPrice %>" placeholder="Desde" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+                <span class="text-sm text-gray-600">€</span>
+              </label>
+      
+              <label for="maxPrice" class="flex items-center gap-2">
+      
+                <input type="number" id="maxPrice" value="<%= maxPrice %>" name="maxPrice" placeholder="Hasta" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+                <span class="text-sm text-gray-600">€</span>
+              </label>
             </div>
-					</form>
-				</div>
-			</div>
+          </div>
+          <button type="submit" class="rounded-full border border-indigo-600 bg-indigo-600 px-4 py-2 text-xs font-medium text-white cursor-pointer hover:bg-indigo-700" id="filters-btn">
+            Aplicar filtros
+          </button>
+        </div>
+      </form>
 
 			<div class="lg:col-span-3">
 				<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

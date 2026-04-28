@@ -7,6 +7,7 @@ export async function homePageController(req, res, next) {
 	const limit = Number(req.query.limit) || 10
 	const skip = (page - 1) * limit
 	// Filtros
+	const limitOptions = [5, 10, 15]
 	const sortOptions = {
 		nameAsc: { name: 1 },
 		nameDesc: { name: -1 },
@@ -29,8 +30,13 @@ export async function homePageController(req, res, next) {
 	}
 
 	if (!isNaN(minPrice) || !isNaN(maxPrice)) {
-		filter.price.$gte = minPrice
-		filter.price.$lte = maxPrice
+		filter.price = {}
+		if (!isNaN(minPrice)) {
+			filter.price.$gte = minPrice
+		}
+		if (!isNaN(maxPrice)) {
+			filter.price.$lte = maxPrice
+		}
 	}
 
 	const productsCount = await getProductsCount(filter)
@@ -46,12 +52,14 @@ export async function homePageController(req, res, next) {
 	queryBase.set('minPrice', minPrice)
 	queryBase.set('maxPrice', maxPrice)
 
-	console.log(queryBase.toString())
-
 	res.render('index.html', {
 		title: 'Bienvenido',
 		products: filteredProducts,
 		currentPage: page,
+		limitOptions,
+		limit,
+		sortOptions,
+		sortQuery,
 		selectedTags,
 		pages,
 		queryBase,
