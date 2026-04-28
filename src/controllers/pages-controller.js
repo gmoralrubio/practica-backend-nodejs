@@ -19,10 +19,18 @@ export async function homePageController(req, res, next) {
 	const tags = []
 	let selectedTags = req.query.tags ? tags.concat(req.query.tags) : []
 
+	const minPrice = Number(req.query.minPrice)
+	const maxPrice = Number(req.query.maxPrice)
+
 	const filter = {}
 
 	if (selectedTags.length > 0) {
 		filter.tags = { $in: selectedTags }
+	}
+
+	if (!isNaN(minPrice) || !isNaN(maxPrice)) {
+		filter.price.$gte = minPrice
+		filter.price.$lte = maxPrice
 	}
 
 	const productsCount = await getProductsCount(filter)
@@ -35,6 +43,8 @@ export async function homePageController(req, res, next) {
 	queryBase.set('limit', limit)
 	queryBase.set('sort', sortQuery)
 	selectedTags.forEach((tag) => queryBase.append('tags', tag))
+	queryBase.set('minPrice', minPrice)
+	queryBase.set('maxPrice', maxPrice)
 
 	console.log(queryBase.toString())
 
@@ -45,6 +55,8 @@ export async function homePageController(req, res, next) {
 		selectedTags,
 		pages,
 		queryBase,
+		minPrice,
+		maxPrice,
 	})
 	return
 }
