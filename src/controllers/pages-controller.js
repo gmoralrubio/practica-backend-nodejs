@@ -59,6 +59,7 @@ export async function homePageController(req, res, next) {
 	const pages = Math.ceil(productsCount / limit)
 
 	const queryBase = new URLSearchParams()
+	queryBase.set('limit', limit)
 	queryBase.set('sort', sortQuery)
 	selectedTags.forEach((tag) => queryBase.append('tags', tag))
 	queryBase.set('minPrice', minPrice)
