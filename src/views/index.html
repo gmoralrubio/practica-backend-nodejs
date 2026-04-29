@@ -44,6 +44,42 @@
         </header>
         <div class="hidden space-y-4 lg:block">
           <div>
+            <label for="search">
+              <span class="text-sm font-medium text-gray-700"> Buscar </span>
+        
+              <div class="relative">
+                <input
+                  type="text"
+                  id="search"
+                  name="search"
+                  value="<%=search%>"
+                  class="mt-0.5 w-full rounded border-gray-300 pe-10 shadow-sm sm:text-sm"
+                >
+        
+                <span class="absolute inset-y-0 right-2 grid w-8 place-content-center">
+                  <div
+                    class="rounded-full p-1.5 text-gray-700 transition-colors hover:bg-gray-100"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="size-4"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </span>
+              </div>
+            </label>
+          </div>
+          <div>
             <label for="productsPerPage" class="block text-xs font-medium text-gray-700"> Productos por página </label>
       
             <select id="productsPerPage" name="limit" class="mt-1 rounded-sm border-gray-300 text-sm">
@@ -71,7 +107,13 @@
               <% tags.forEach(tag=> {%>
                 <li>
                   <label for="<%= tag %>" class="inline-flex items-center gap-2">
-                    <input type="checkbox" name="tags" id="<%= tag %>" value="<%= tag %>" class="size-5 rounded-sm border-gray-300 shadow-sm" <%=selectedTags.includes(tag) ? 'checked' : '' %>>
+                    <input
+                      type="checkbox"
+                      name="tags"
+                      id="<%= tag %>"
+                      value="<%= tag %>"
+                      class="size-5 rounded-sm border-gray-300 shadow-sm"
+                      <%=selectedTags.includes(tag) ? 'checked' : '' %>>
       
                     <span class="text-sm font-medium text-gray-700">
                       <%= tag %>
@@ -87,13 +129,28 @@
             <div class="flex justify-between gap-4 ">
               <label for="minPrice" class="flex items-center gap-2">
       
-                <input type="number" name="minPrice" id="minPrice" step="0.01" min="0" value="<%= minPrice ?? '' %>" placeholder="Desde" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+                <input
+                  type="number"
+                  name="minPrice"
+                  id="minPrice"
+                  step="0.01"
+                  min="0"
+                  value="<%= minPrice ?? '' %>"
+                  placeholder="Desde"
+                  class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
                 <span class="text-sm text-gray-600">€</span>
               </label>
       
               <label for="maxPrice" class="flex items-center gap-2">
       
-                <input type="number" name="maxPrice" id="maxPrice" step="0.01" value="<%= maxPrice !== 0 ? maxPrice : '' %>"  placeholder="Hasta" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+                <input 
+                  type="number" 
+                  name="maxPrice" 
+                  id="maxPrice" 
+                  step="0.01" 
+                  value="<%= maxPrice !== 0 ? maxPrice : '' %>"  
+                  placeholder="Hasta" 
+                  class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
                 <span class="text-sm text-gray-600">€</span>
               </label>
             </div>

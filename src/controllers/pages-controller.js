@@ -27,6 +27,9 @@ export async function homePageController(req, res, next) {
 	const minPrice = Number(req.query.minPrice)
 	let maxPrice = Number(req.query.maxPrice)
 
+	const search = req.query.search?.trim() || ''
+	console.log(search)
+
 	const filter = {}
 
 	if (selectedTags.length > 0) {
@@ -46,19 +49,21 @@ export async function homePageController(req, res, next) {
 		}
 	}
 
+	if (search) {
+		filter.$text = { $search: search }
+	}
+
 	const productsCount = await getProductsCount(filter)
 	const filteredProducts = await getFilteredProducts(skip, limit, sort, filter)
 
 	const pages = Math.ceil(productsCount / limit)
 
 	const queryBase = new URLSearchParams()
-	// queryBase.set('page', page)
-	queryBase.set('limit', limit)
 	queryBase.set('sort', sortQuery)
 	selectedTags.forEach((tag) => queryBase.append('tags', tag))
-
 	queryBase.set('minPrice', minPrice)
 	queryBase.set('maxPrice', maxPrice)
+	queryBase.set('search', search)
 
 	res.render('index.html', {
 		title: 'Bienvenido',
@@ -73,6 +78,7 @@ export async function homePageController(req, res, next) {
 		queryBase,
 		minPrice,
 		maxPrice,
+		search,
 	})
 	return
 }
