@@ -87,13 +87,13 @@
             <div class="flex justify-between gap-4 ">
               <label for="minPrice" class="flex items-center gap-2">
       
-                <input type="number" name="minPrice" id="minPrice" min="0" value="<%= minPrice %>" placeholder="Desde" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+                <input type="number" name="minPrice" id="minPrice" step="0.01" min="0" value="<%= minPrice ?? '' %>" placeholder="Desde" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
                 <span class="text-sm text-gray-600">€</span>
               </label>
       
               <label for="maxPrice" class="flex items-center gap-2">
       
-                <input type="number" id="maxPrice" value="<%= maxPrice %>" name="maxPrice" placeholder="Hasta" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+                <input type="number" name="maxPrice" id="maxPrice" step="0.01" value="<%= maxPrice !== 0 ? maxPrice : '' %>"  placeholder="Hasta" class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
                 <span class="text-sm text-gray-600">€</span>
               </label>
             </div>

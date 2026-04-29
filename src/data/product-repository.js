@@ -10,6 +10,11 @@ export async function getProductsCount(filter) {
 	return productsCount
 }
 
+export async function getMostExpensiveProduct() {
+	const mostExpensiveProduct = Product.findOne({}).sort({ price: -1 })
+	return mostExpensiveProduct
+}
+
 export async function getFilteredProducts(skip, limit, sort, filter) {
 	const products = Product.find(filter).skip(skip).limit(limit).sort(sort)
 

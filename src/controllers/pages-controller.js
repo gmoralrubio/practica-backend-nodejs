@@ -1,4 +1,8 @@
-import { getFilteredProducts, getProductsCount } from '../data/product-repository.js'
+import {
+	getFilteredProducts,
+	getProductsCount,
+	getMostExpensiveProduct,
+} from '../data/product-repository.js'
 import TAGS from '../models/TAGS.js'
 
 export async function homePageController(req, res, next) {
@@ -21,13 +25,16 @@ export async function homePageController(req, res, next) {
 	let selectedTags = req.query.tags ? tags.concat(req.query.tags) : []
 
 	const minPrice = Number(req.query.minPrice)
-	const maxPrice = Number(req.query.maxPrice)
+	let maxPrice = Number(req.query.maxPrice)
 
 	const filter = {}
 
 	if (selectedTags.length > 0) {
 		filter.tags = { $in: selectedTags }
 	}
+
+	const mostExpensiveProduct = await getMostExpensiveProduct()
+	maxPrice === 0 ? (maxPrice = mostExpensiveProduct.price) : maxPrice
 
 	if (!isNaN(minPrice) || !isNaN(maxPrice)) {
 		filter.price = {}
@@ -49,6 +56,7 @@ export async function homePageController(req, res, next) {
 	queryBase.set('limit', limit)
 	queryBase.set('sort', sortQuery)
 	selectedTags.forEach((tag) => queryBase.append('tags', tag))
+
 	queryBase.set('minPrice', minPrice)
 	queryBase.set('maxPrice', maxPrice)
 
