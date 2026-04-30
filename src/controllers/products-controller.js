@@ -53,7 +53,7 @@ export async function productsPageController(req, res, next) {
 	const pages = Math.ceil(productsCount / req.productQuery.limit)
 
 	res.render('products.html', {
-		title: 'Listado de productos',
+		title: 'Gestor de productos',
 		path: '/products',
 		products: filteredProducts,
 		pages,
