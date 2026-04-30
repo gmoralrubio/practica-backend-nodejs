@@ -1,9 +1,10 @@
 import {
 	addNewProduct,
 	getProduct,
-	getProductsByUser,
 	updateProduct,
 	deleteProduct,
+	getFilteredProducts,
+	getProductsCount,
 } from '../data/product-repository.js'
 import { formatDate } from '../utils/utils.js'
 
@@ -36,12 +37,28 @@ export async function editProductPageController(req, res, next) {
 }
 
 export async function productsPageController(req, res, next) {
-	const userId = req.session.userId
-	const products = await getProductsByUser(userId)
+	// const userId = req.session.userId
+	// const products = await getProductsByUser(userId)
+
+	req.productFilter.owner = req.session.userId
+
+	const productsCount = await getProductsCount(req.productFilter)
+	const filteredProducts = await getFilteredProducts(
+		req.productQuery.skip,
+		req.productQuery.limit,
+		req.productQuery.sort,
+		req.productFilter,
+	)
+
+	const pages = Math.ceil(productsCount / req.productQuery.limit)
 
 	res.render('products.html', {
 		title: 'Listado de productos',
-		products: products,
+		path: '/products',
+		products: filteredProducts,
+		pages,
+		filter: req.productFilter,
+		productQuery: req.productQuery,
 		formatDate: formatDate,
 	})
 }
