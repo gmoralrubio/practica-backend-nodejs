@@ -39,16 +39,15 @@
 
 		<div class="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
 
-      <%- include('partials/components/filters-component.html', {
-        search,
+      <%- include('partials/components/vertical-filters-component.html', {
         limitOptions,
-        limit,
         sortOptions,
-        sortQuery,
-        tags,
-        selectedTags,
-        minPrice,
-        maxPrice
+        limit: productQuery.limit,
+        selectedTags: productQuery.selectedTags,
+        minPrice: productQuery.minPrice,
+        maxPrice: productQuery.maxPrice,
+        search: productQuery.search,
+        sortQuery: productQuery.sortQuery,
       }) %>
 
 			<div class="lg:col-span-3">
@@ -61,9 +60,10 @@
 				</ul>
 
         <%- include('partials/components/pagination-component.html', {
-          currentPage,
+          path,
           pages,
-          queryBase
+          currentPage: productQuery.currentPage,
+          queryBase: productQuery.queryBase
         })%>
 
 			</div>

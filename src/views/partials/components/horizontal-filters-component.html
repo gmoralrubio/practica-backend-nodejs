@@ -1,0 +1,155 @@
+<form action="<%= path %>" method="GET" class="flex justify-between items-end mb-4 border rounded-sm border-gray-300 p-2" id="filters-form">
+  <div class="flex gap-10 items-end">
+
+    <div class="max-w-56">
+      <label for="search">
+        <span class="block text-xs font-medium text-gray-700"> Buscar </span>
+  
+        <div class="relative">
+          <input
+            type="text"
+            id="search"
+            name="search"
+            value="<%=search%>"
+            class="mt-0.5 w-full rounded border-gray-300 pe-10 shadow-sm sm:text-sm"
+          >
+  
+          <span class="absolute inset-y-0 right-2 grid w-8 place-content-center">
+            <div
+              class="rounded-full p-1.5 text-gray-700 transition-colors hover:bg-gray-100"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                ></path>
+              </svg>
+            </div>
+          </span>
+        </div>
+      </label>
+    </div>
+    <div class="flex justify-between gap-4">
+      <div>
+        <label for="productsPerPage" class="block text-xs font-medium text-gray-700"> Productos por página </label>
+  
+        <select id="productsPerPage" name="limit" class="mt-1 rounded-sm border-gray-300 text-sm">
+          <% limitOptions.forEach(option => { %>
+            <option value="<%= option %>" <%= limit === option ? 'selected' : '' %>><%= option %></option>
+          <%})%>
+        </select>
+      </div>
+      <div>
+        <label for="sort" class="block text-xs font-medium text-gray-700"> Ordenar por </label>
+  
+        <select id="sort" name="sort" class="mt-1 rounded-sm border-gray-300 text-sm">
+          <% for(const option in sortOptions) { %>
+            <option value="<%= option %>" <%= option === sortQuery ? 'selected' : '' %> ><%= option %></option>
+          <% } %>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <span class="block text-xs font-medium text-gray-700 mb-2"> Tags </span>
+      <div class="flex items-center justify-center">
+        <div class=" relative inline-block text-left dropdown">
+          <span class="rounded-md shadow-sm">
+            <button
+              class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
+              type="button"
+              aria-haspopup="true"
+              aria-expanded="true"
+              aria-controls="headlessui-menu-items-117"
+            >
+              <span class="text-sm font-medium text-gray-700"> Tags </span>
+              <svg
+                class="w-5 h-5 ml-2 -mr-1"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </span>
+          <div class="hidden dropdown-menu">
+            <div
+              class="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
+              aria-labelledby="headlessui-menu-button-1"
+              id="headlessui-menu-items-117"
+              role="menu"
+            >
+              <ul class="space-x-4 flex flex-wrap p-2">
+                <% tags.forEach(tag=> {%>
+                  <li class="min-w-20">
+                    <label for="<%= tag %>" class="inline-flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        name="tags"
+                        id="<%= tag %>"
+                        value="<%= tag %>"
+                        class="size-5 rounded-sm border-gray-300 shadow-sm"
+                        <%=selectedTags.includes(tag) ? 'checked' : '' %>>
+
+                      <span class="text-sm font-medium text-gray-700">
+                        <%= tag %>
+                      </span>
+                    </label>
+                  </li>
+                  <% }) %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="max-w-56">
+      <span class="block text-xs font-medium text-gray-700 mb-2"> Precio </span>
+      <div class="flex justify-between gap-4 ">
+        <label for="minPrice" class="flex items-center gap-2">
+
+          <input
+            type="number"
+            name="minPrice"
+            id="minPrice"
+            step="0.01"
+            min="0"
+            value="<%= minPrice %>"
+            placeholder="Desde"
+            class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+          <span class="text-sm text-gray-600">€</span>
+        </label>
+
+        <label for="maxPrice" class="flex items-center gap-2">
+
+          <input 
+            type="number" 
+            name="maxPrice" 
+            id="maxPrice" 
+            step="0.01" 
+            value="<%= maxPrice  %>"  
+            placeholder="Hasta" 
+            class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
+          <span class="text-sm text-gray-600">€</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="rounded-full border border-indigo-600 bg-indigo-600 px-4 py-2 text-xs font-medium text-white cursor-pointer hover:bg-indigo-700" id="filters-btn">
+    Aplicar filtros
+  </button>
+</form>

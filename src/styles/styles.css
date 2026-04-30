@@ -5,3 +5,7 @@
 	--font-sans: InterVariable, sans-serif;
 	--font-sans--font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
+
+.dropdown:focus-within .dropdown-menu {
+	@apply block;
+}

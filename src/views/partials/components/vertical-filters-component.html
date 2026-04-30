@@ -1,4 +1,4 @@
-<form action="/" method="GET" class="mt-1 space-y-2 border rounded-sm border-gray-300 p-2" id="filters-form">
+<form action="<%= path %>" method="GET" class="mt-1 space-y-2 border rounded-sm border-gray-300 p-2" id="filters-form">
   <header class="flex items-center justify-between mb-2">
     <span class="block text-sm font-medium"> Filtros </span>
   </header>
@@ -95,7 +95,7 @@
             id="minPrice"
             step="0.01"
             min="0"
-            value="<%= minPrice ?? '' %>"
+            value="<%= minPrice %>"
             placeholder="Desde"
             class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
           <span class="text-sm text-gray-600">€</span>
@@ -108,7 +108,7 @@
             name="maxPrice" 
             id="maxPrice" 
             step="0.01" 
-            value="<%= maxPrice !== 0 ? maxPrice : '' %>"  
+            value="<%= maxPrice  %>"  
             placeholder="Hasta" 
             class="w-full rounded-md border-gray-200 shadow-xs sm:text-sm">
           <span class="text-sm text-gray-600">€</span>
