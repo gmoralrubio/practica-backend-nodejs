@@ -1,4 +1,8 @@
-import { User } from '../models/user-model.js'
+import {
+	findUserByEmail,
+	findUserByUsername,
+	createUser,
+} from '../data/user-repository.js'
 
 export async function loginPageController(req, res, next) {
 	res.render('login.html', {
@@ -27,9 +31,7 @@ export async function loginActionController(req, res, next) {
 	}
 
 	// Recupera usuario y contraseña
-	const user = await User.findOne({ email: req.body.email }).select('+password')
-
-	console.log(user)
+	const user = await findUserByEmail(req.body.email)
 
 	if (!user || !(await user.comparePassword(req.body.password))) {
 		const errorMessage = 'Credenciales inválidas'
@@ -57,4 +59,72 @@ export function logoutActionController(req, res, next) {
 
 		res.redirect('/')
 	})
+}
+
+export const registerPageController = async (req, res, next) => {
+	res.render('register.html', {
+		title: 'Regístrate',
+		values: {},
+	})
+}
+
+export const registerActionController = async (req, res, next) => {
+	const { username, email, password, confirmPassword } = req.body
+
+	if (
+		!username ||
+		username === '' ||
+		!email ||
+		email === '' ||
+		!password ||
+		password === ''
+	) {
+		const errorMessage =
+			'El nombre de usuario, el email y la contraseña son obligatorios'
+
+		res.render('register.html', {
+			title: 'Regístrate',
+			errorMessage: errorMessage,
+			values: { email: req.body.email },
+		})
+		return
+	}
+
+	if (await findUserByEmail(email)) {
+		const errorMessage = 'El email ya está registrado'
+
+		res.render('register.html', {
+			title: 'Regístrate',
+			errorMessage: errorMessage,
+			values: { email: req.body.email },
+		})
+		return
+	}
+
+	if (await findUserByUsername(username)) {
+		const errorMessage = 'El nombre de usuario ya está en uso'
+
+		res.render('register.html', {
+			title: 'Regístrate',
+			errorMessage: errorMessage,
+			values: { username: req.body.username },
+		})
+		return
+	}
+
+	if (password !== confirmPassword) {
+		const errorMessage = 'Las contraseñas no coinciden'
+
+		res.render('register.html', {
+			title: 'Regístrate',
+			errorMessage: errorMessage,
+			values: {},
+		})
+		return
+	}
+
+	const user = await createUser({ username, email, password })
+
+	req.session.userId = user._id
+	res.redirect('/')
 }

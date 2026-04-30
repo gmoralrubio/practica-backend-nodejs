@@ -4,7 +4,7 @@ import MODELS from './MODELS.js'
 
 const userSchema = new Schema(
 	{
-		name: {
+		username: {
 			type: String,
 			required: true,
 			trim: true,
@@ -25,7 +25,7 @@ function hashPassword(clearPassword) {
 	return hash(clearPassword, 7)
 }
 
-userSchema.statics.hashPassword = clearPassword => {
+userSchema.statics.hashPassword = (clearPassword) => {
 	return hash(clearPassword, 7)
 }
 
