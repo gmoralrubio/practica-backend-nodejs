@@ -14,6 +14,7 @@ import {
 	sessionMiddleware,
 } from './middlewares/auth-middleware.js'
 import { dataInViews } from './middlewares/views-middleware.js'
+import { filterProductsMiddleware } from './middlewares/filter-middleware.js'
 
 // Creamos la aplicación
 const app = express()
@@ -30,6 +31,9 @@ app.use(dataInViews)
 // Auth middlewares
 app.use(sessionMiddleware)
 app.use(sessionInViews)
+
+// Filtrado de productos
+app.use(filterProductsMiddleware)
 
 // Configuracion del motor de plantillas
 app.set('view engine', 'html')
