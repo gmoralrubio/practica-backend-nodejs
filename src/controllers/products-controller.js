@@ -96,7 +96,9 @@ export async function createProductController(req, res, next) {
 
 export async function editProductController(req, res, next) {
 	const productId = req.params.productId
-	const product = await getProduct(productId)
+	const userId = req.session.userId
+
+	const product = await getProduct(productId, userId)
 
 	if (!product) {
 		next()
@@ -124,8 +126,6 @@ export async function editProductController(req, res, next) {
 		return
 	}
 
-	const userId = req.session.userId
-
 	await updateProduct(productId, userId, {
 		id: productId,
 		name: req.body.name,
@@ -137,14 +137,13 @@ export async function editProductController(req, res, next) {
 
 export async function deleteProductController(req, res, next) {
 	const productId = req.params.productId
-	const product = await getProduct(productId)
+	const userId = req.session.userId
+	const product = await getProduct(productId, userId)
 
 	if (!product) {
 		next()
 		return
 	}
-
-	const userId = req.session.userId
 
 	const newProducts = await deleteProduct(productId, userId)
 
