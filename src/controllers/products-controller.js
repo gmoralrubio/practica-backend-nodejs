@@ -6,7 +6,7 @@ import {
 	getFilteredProducts,
 	getProductsCount,
 } from '../data/product-repository.js'
-import { formatDate } from '../utils/utils.js'
+import { formatDate } from '../scripts/utils.js'
 
 export function newProductPageController(req, res, next) {
 	res.render('product.html', {

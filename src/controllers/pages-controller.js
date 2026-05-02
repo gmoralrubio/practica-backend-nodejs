@@ -1,4 +1,5 @@
 import { getFilteredProducts, getProductsCount } from '../data/product-repository.js'
+import { randomImageUrl } from '../scripts/utils.js'
 
 export async function homePageController(req, res, next) {
 	const productsCount = await getProductsCount(req.productFilter)
@@ -18,6 +19,7 @@ export async function homePageController(req, res, next) {
 		pages,
 		filter: req.productFilter,
 		productQuery: req.productQuery,
+		randomImageUrl,
 	})
 	return
 }

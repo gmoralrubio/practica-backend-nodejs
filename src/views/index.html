@@ -1,18 +1,39 @@
-<%- include('partials/start-page.html') %>
-<%- include('partials/components/header-component.html') %>
+<%- include('partials/start-page.html') %> <%-
+include('partials/components/header-component.html') %>
 
 <main class="relative">
 	<% if(!session.userId){ %>
-	<div class="sticky inset-x-0 top-0 z-50 flex items-center justify-between rounded-sm bg-gray-100 px-4 py-2 mt-2 text-gray-900" id="login-banner">
-		<span> </span>
+	<div
+		class="sticky inset-x-0 top-0 z-50 flex items-center justify-between rounded-sm bg-gray-100 px-4 py-2 mt-2 text-gray-900"
+		id="login-banner"
+	>
+		<span></span>
 
 		<p class="text-center font-medium">
-			Debes <a href="/login" class="inline-block underline">iniciar sesión </a> para poder editar los productos
+			Debes
+			<a href="/login" class="inline-block underline">iniciar sesión</a>
+			para poder editar los productos
 		</p>
 
-		<button type="button" aria-label="Dismiss" class="rounded border border-gray-300 bg-white p-1.5 shadow-sm transition-colors hover:bg-gray-50" id="close-btn">
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"></path>
+		<button
+			type="button"
+			aria-label="Dismiss"
+			class="rounded border border-gray-300 bg-white p-1.5 shadow-sm transition-colors hover:bg-gray-50"
+			id="close-btn"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				class="size-5"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M6 18 18 6M6 6l12 12"
+				></path>
 			</svg>
 		</button>
 	</div>
@@ -23,49 +44,54 @@
 			<h2 class="text-xl font-bold text-gray-900 sm:text-3xl"><%= title %></h2>
 
 			<p class="mt-4 max-w-md text-gray-500">
-				Desde aquí puedes ver todos los productos disponibles de todos los usuarios. Puedes filtrarlos por tag, rango de precio y nombre de producto. También puedes ordenarlos por nombre de producto o precio.
+				Desde aquí puedes ver todos los productos disponibles de todos los
+				usuarios. Puedes filtrarlos por tag, rango de precio y nombre de producto.
+				También puedes ordenarlos por nombre de producto o precio.
 			</p>
 		</header>
 
 		<div class="mt-8 block lg:hidden">
-			<button class="flex cursor-pointer items-center gap-2 border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600">
-				<span class="text-sm font-medium"> Filters &amp; Sorting mob</span>
+			<button
+				class="flex cursor-pointer items-center gap-2 border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600"
+			>
+				<span class="text-sm font-medium">Filters &amp; Sorting mob</span>
 
-				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 rtl:rotate-180">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					class="size-4 rtl:rotate-180"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M8.25 4.5l7.5 7.5-7.5 7.5"
+					></path>
 				</svg>
 			</button>
 		</div>
 
 		<div class="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
-
-      <%- include('partials/components/vertical-filters-component.html', {
-        limitOptions,
-        sortOptions,
-        limit: productQuery.limit,
-        selectedTags: productQuery.selectedTags,
-        minPrice: productQuery.minPrice,
-        maxPrice: productQuery.maxPrice,
-        search: productQuery.search,
-        sortQuery: productQuery.sortQuery,
-      }) %>
+			<%- include('partials/components/vertical-filters-component.html', {
+			limitOptions, sortOptions, limit: productQuery.limit, selectedTags:
+			productQuery.selectedTags, minPrice: productQuery.minPrice, maxPrice:
+			productQuery.maxPrice, search: productQuery.search, sortQuery:
+			productQuery.sortQuery, }) %>
 
 			<div class="lg:col-span-3">
 				<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 					<% if(products.length === 0) { %>
-						<span>No se han encontrado productos</span>
-					<% } else { products.forEach(product=>{ %>
-						<%- include('partials/components/product-component.html', { product }) %>
-					<% })} %>
+					<span>No se han encontrado productos</span>
+					<% } else { products.forEach(product=>{ %> <%-
+					include('partials/components/product-component.html', { product,
+					randomImageUrl }) %> <% })} %>
 				</ul>
 
-        <%- include('partials/components/pagination-component.html', {
-          path,
-          pages,
-          currentPage: productQuery.currentPage,
-          queryBase: productQuery.queryBase
-        })%>
-
+				<%- include('partials/components/pagination-component.html', { path,
+				pages, currentPage: productQuery.currentPage, queryBase:
+				productQuery.queryBase })%>
 			</div>
 		</div>
 	</div>
