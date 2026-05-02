@@ -62,7 +62,6 @@ export async function productsPageController(req, res, next) {
 
 export async function createProductController(req, res, next) {
 	const userId = req.session.userId
-	console.log(req.body)
 
 	if (
 		!req.body.name ||

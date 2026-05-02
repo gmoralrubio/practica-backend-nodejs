@@ -41,7 +41,6 @@ export async function loginActionController(req, res, next) {
 	}
 
 	req.session.userId = user._id
-	console.log(req.session)
 
 	res.redirect(redirectUrl || '/')
 }
