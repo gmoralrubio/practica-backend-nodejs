@@ -18,12 +18,12 @@ process.exit(0)
 async function seedUsers() {
 	const USERS = [
 		{
-			name: 'John Doe',
+			username: 'John Doe',
 			email: 'johndoe@email.com',
 			password: await User.hashPassword('1234'),
 		},
 		{
-			name: 'Admin',
+			username: 'Admin',
 			email: 'admin@email.com',
 			password: await User.hashPassword('1234'),
 		},

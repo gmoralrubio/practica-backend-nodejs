@@ -46,7 +46,6 @@ export async function filterProductsMiddleware(req, res, next) {
 	queryBase.set('minPrice', minPrice)
 	queryBase.set('maxPrice', maxPrice)
 	queryBase.set('search', search)
-	console.log(queryBase.toString())
 
 	req.productQuery = {
 		skip,

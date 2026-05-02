@@ -1,8 +1,4 @@
-import {
-	findUserByEmail,
-	findUserByUsername,
-	createUser,
-} from '../data/user-repository.js'
+import { getUserByEmail, getUserByUsername, createUser } from '../data/user-repository.js'
 
 export async function loginPageController(req, res, next) {
 	res.render('login.html', {
@@ -31,7 +27,7 @@ export async function loginActionController(req, res, next) {
 	}
 
 	// Recupera usuario y contraseña
-	const user = await findUserByEmail(req.body.email)
+	const user = await getUserByEmail(req.body.email)
 
 	if (!user || !(await user.comparePassword(req.body.password))) {
 		const errorMessage = 'Credenciales inválidas'
@@ -90,7 +86,10 @@ export const registerActionController = async (req, res, next) => {
 		return
 	}
 
-	if (await findUserByEmail(email)) {
+	const userByEmail = await getUserByEmail(email)
+	const userByUsername = await getUserByUsername(username)
+
+	if (userByEmail) {
 		const errorMessage = 'El email ya está registrado'
 
 		res.render('register.html', {
@@ -101,7 +100,7 @@ export const registerActionController = async (req, res, next) => {
 		return
 	}
 
-	if (await findUserByUsername(username)) {
+	if (userByUsername) {
 		const errorMessage = 'El nombre de usuario ya está en uso'
 
 		res.render('register.html', {
@@ -123,8 +122,8 @@ export const registerActionController = async (req, res, next) => {
 		return
 	}
 
-	const user = await createUser({ username, email, password })
+	const newUser = await createUser({ username, email, password })
 
-	req.session.userId = user._id
+	req.session.userId = newUser._id
 	res.redirect('/')
 }
