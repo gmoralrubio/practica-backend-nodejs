@@ -32,17 +32,18 @@ app.use(dataInViews)
 app.use(sessionMiddleware)
 app.use(sessionInViews)
 
-// Filtrado de productos
-app.use(filterProductsMiddleware)
-
 // Configuracion del motor de plantillas
 app.set('view engine', 'html')
 app.engine('html', ejs.renderFile)
 app.set('views', join(appDir, 'views'))
 
 // Routes
-app.use('/', pagesRouter)
 app.use('/', authRouter)
+
+// Filtrado de productos
+app.use(filterProductsMiddleware)
+
+app.use('/', pagesRouter)
 app.use('/products', guard, productsRouter)
 
 // Handler 404

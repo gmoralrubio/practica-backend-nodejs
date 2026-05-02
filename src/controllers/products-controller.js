@@ -18,7 +18,6 @@ export function newProductPageController(req, res, next) {
 export async function editProductPageController(req, res, next) {
 	const productId = req.params.productId
 	const product = await getProduct(productId)
-	console.log(product)
 
 	if (!product) {
 		next()
@@ -37,9 +36,6 @@ export async function editProductPageController(req, res, next) {
 }
 
 export async function productsPageController(req, res, next) {
-	// const userId = req.session.userId
-	// const products = await getProductsByUser(userId)
-
 	req.productFilter.owner = req.session.userId
 
 	const productsCount = await getProductsCount(req.productFilter)
@@ -64,8 +60,6 @@ export async function productsPageController(req, res, next) {
 }
 
 export async function createProductController(req, res, next) {
-	// TODO: Gestionar si el usuario no mete algun dato
-	// mostrar mensaje en modal
 	const userId = req.session.userId
 	console.log(req.body)
 
