@@ -86,27 +86,18 @@ export const registerActionController = async (req, res, next) => {
 		return
 	}
 
-	const userByEmail = await getUserByEmail(email)
-	const userByUsername = await getUserByUsername(username)
+	const [userByUsernameExists, userByEmailExists] = await Promise.all([
+		getUserByUsername(username),
+		getUserByEmail(email),
+	])
 
-	if (userByEmail) {
-		const errorMessage = 'El email ya está registrado'
-
-		res.render('register.html', {
-			title: 'Regístrate',
-			errorMessage: errorMessage,
-			values: { email: req.body.email },
-		})
-		return
-	}
-
-	if (userByUsername) {
-		const errorMessage = 'El nombre de usuario ya está en uso'
+	if (userByEmailExists || userByUsernameExists) {
+		const errorMessage = 'El email o el nombre de usuario ya están registrados'
 
 		res.render('register.html', {
 			title: 'Regístrate',
 			errorMessage: errorMessage,
-			values: { username: req.body.username },
+			values: { email: req.body.email, username: req.body.username },
 		})
 		return
 	}
