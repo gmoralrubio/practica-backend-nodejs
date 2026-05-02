@@ -17,7 +17,8 @@ export function newProductPageController(req, res, next) {
 
 export async function editProductPageController(req, res, next) {
 	const productId = req.params.productId
-	const product = await getProduct(productId)
+	const userId = req.session.userId
+	const product = await getProduct(productId, userId)
 
 	if (!product) {
 		next()

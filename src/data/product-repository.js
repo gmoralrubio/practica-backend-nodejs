@@ -28,8 +28,8 @@ export async function getProductsByUser(userId) {
 	return products
 }
 
-export async function getProduct(productId) {
-	const product = Product.findOne({ _id: productId })
+export async function getProduct(productId, ownerId) {
+	const product = Product.findOne({ _id: productId, owner: ownerId })
 	return product
 }
 
