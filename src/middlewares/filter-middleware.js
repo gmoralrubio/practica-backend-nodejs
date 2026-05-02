@@ -25,14 +25,12 @@ export async function filterProductsMiddleware(req, res, next) {
 		req.productFilter.tags = { $in: selectedTags }
 	}
 
-	if (!isNaN(minPrice) || !isNaN(maxPrice)) {
-		req.productFilter.price = {}
-		if (!isNaN(minPrice)) {
-			req.productFilter.price.$gte = minPrice
-		}
-		if (!isNaN(maxPrice)) {
-			req.productFilter.price.$lte = maxPrice
-		}
+	req.productFilter.price = {}
+	if (!isNaN(minPrice)) {
+		req.productFilter.price.$gte = minPrice
+	}
+	if (!isNaN(maxPrice)) {
+		req.productFilter.price.$lte = maxPrice
 	}
 
 	if (search) {
