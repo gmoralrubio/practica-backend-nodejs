@@ -1,6 +1,6 @@
 # Nodepop — Práctica final módulo Backend con NodeJS
 
-Aplicación web de compraventa de artículos de segunda mano. Permite a usuarios autenticados publicar, editar, eliminar y filtrar productos por nombre, precio y etiquetas.
+Aplicación web de compraventa de artículos de segunda mano. Permite a usuarios registrados publicar, editar, eliminar y filtrar productos por nombre, precio y etiquetas.
 
 ## Requisitos
 
@@ -71,6 +71,8 @@ npm run css:watch
 | GET    | `/login`                    | Formulario de login                          | No   |
 | POST   | `/login`                    | Acción de login                              | No   |
 | GET    | `/logout`                   | Cerrar sesión                                | No   |
+| GET    | `/register`                 | Formulario de registro                       | No   |
+| POST   | `/register`                 | Crear cuenta de usuario                      | No   |
 | GET    | `/products`                 | Listado de productos del usuario con filtros | Sí   |
 | GET    | `/products/new`             | Formulario para crear producto               | Sí   |
 | POST   | `/products`                 | Crear producto                               | Sí   |
